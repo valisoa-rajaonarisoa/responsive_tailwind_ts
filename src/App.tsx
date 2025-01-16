@@ -2,6 +2,7 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import useMediaQuery from "./hooks/useMediaQuery";
 import { MdOutlineSaveAlt } from "react-icons/md";
 
+import { motion } from "framer-motion";
 type Props = {};
 
 const data = [
@@ -67,23 +68,47 @@ const App = (props: Props) => {
 
   return (
     <div
-      className={`px-8 pt-3 pb-7 ${isLargeScreen ? "bg" : "bg"} bg-gray-800`}
+      className={`px-8 pt-3 pb-7  bg-gray-800`}
     >
       <div>
         {/* ***************TITRE  */}
-        <h2
+        <motion.div
+          initial="hidden" //prend en param hidden
+          whileInView="visible" //prend en param visible
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 1 }}
+          variants={{
+            // ********definir le hidden
+            hidden: { opacity: 0, x:-200},
+
+            // ****definr le visible
+            visible: { opacity: 1, x: 0 },
+          }}
           className={`  ${
             isLargeScreen ? "text-5xl " : "text-3xl text-center "
           } text-green-500 font-extrabold mb-8 tracking-widest`}
         >
           WELCOME
-        </h2>
+        </motion.div>
 
         {/* ********************PARAGRAPE  */}
-        <p
+        <motion.div
+
           className={`text-zinc-200 text-md mb-8 text-left tracking-wider ${
             isLargeScreen ? "pr-64 leading-8 mb-9" : ""
           }`}
+
+          initial="hidden" //prend en param hidden
+          whileInView="visible" //prend en param visible
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 1 }}
+          variants={{
+            // ********definir le hidden
+            hidden: { opacity: 0, x:-400},
+
+            // ****definr le visible
+            visible: { opacity: 1, x: 0 },
+          }}
         >
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia aut
           distinctio sit, velit tempore dolore, voluptates nam ipsam, esse amet
@@ -91,7 +116,7 @@ const App = (props: Props) => {
           nam, quisquam repellat similique eligendi voluptates neque assumenda
           quibusdam itaque reprehenderit dicta quo, perspiciatis quae fugit.
           Dolor voluptas minima quaerat voluptate maxime.
-        </p>
+        </motion.div>
 
         {/* *****************BUTTON  */}
         <div className="flex gap-8">
